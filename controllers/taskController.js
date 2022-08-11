@@ -23,6 +23,25 @@ exports.getTaskById = async (req,res) => {
     const task = await Task.findById(req.params.id);
     res.status(200).json(task);
   } catch (error) {
-    res.status(404).json({msg: "Task not found"}); 
+    res.status(500).json({msg: error}); 
+  }
+}
+
+exports.editTask = async (req,res) => {
+  const { name , completed } = req.body;
+  try {
+    const updateTask = await Task.findOneAndUpdate(req.params.id , { name, completed })
+    res.status(200).json(updateTask);
+  } catch (error) {
+    res.status(500).json({msg: error})
+  }
+}
+
+exports.deleteTask = async (req,res) => {
+  try {
+    const deleteTask = await Task.deleteOne({ _id: req.params.id });
+    res.status(200).json(deleteTask);
+  } catch (error) {
+    res.status(500).json({msg: error})
   }
 }
