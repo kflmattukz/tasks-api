@@ -1,9 +1,7 @@
 const router = require('express').Router();
-const { getTasks , createTask , getTaskById , editTask , deleteTask } = require('./../controllers/taskController');
+const { getTasks , createTask , getTaskById , editTask , deleteTask , isTaskExist } = require('./../controllers/taskController');
 
-router.get('/' , (req,res) => {
-  res.send('Hello from task API');
-})
+router.param('id' , isTaskExist)
 
 router.route('/tasks')
   .get(getTasks)

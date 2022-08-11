@@ -9,9 +9,9 @@ app.use(express.json());
 
 app.use('/api/v1' , taskRouter);
 
-app.get('/' , (req,res) => {
-  res.send('Hello from express JS');
-})
+// app.get('/' , (req,res) => {
+//   res.send('Hello from express JS');
+// })
 
 const start = async () => {
   try {

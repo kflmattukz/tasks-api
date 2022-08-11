@@ -1,5 +1,15 @@
 const Task = require('./../models/Task');
 
+exports.isTaskExist = async (req,res,next,val) => {
+  try {
+    const checkTask = await Task.findById(val);
+    req.task = checkTask;
+    next()
+  } catch (error) {
+    res.status(500).json({ msg: "Task not found." });
+  }
+}
+
 exports.getTasks = async (req,res) => {  
   try {
     const task = await Task.find();
@@ -21,6 +31,7 @@ exports.createTask = async (req,res) => {
 exports.getTaskById = async (req,res) => {
   try {
     const task = await Task.findById(req.params.id);
+    console.log(task);
     res.status(200).json(task);
   } catch (error) {
     res.status(500).json({msg: error}); 
