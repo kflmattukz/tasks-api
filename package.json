@@ -1,0 +1,23 @@
+{
+  "name": "tasks-api",
+  "version": "1.0.0",
+  "description": "simple tasks(todoapp) API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "javascript",
+    "nodejs",
+    "API",
+    "todoapp",
+    "simple-project",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "Sulkifli Asmunandar",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
