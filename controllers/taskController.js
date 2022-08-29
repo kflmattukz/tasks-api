@@ -13,8 +13,15 @@ exports.isTaskExist = async (req,res,next,val) => {
 
 exports.getTasks = async (req,res) => {  
   try {
-    const task = await Task.find();
-    res.status(200).json(task);
+    const tasks = await Task.find();
+    res.status(200).json(tasks.map(task => {
+      const { _id,name,completed } = task;
+      return {
+        "id" : _id,
+        name,
+        completed
+      }
+    }));
   } catch (error) {
     res.status(500).json({msg: error})
   }
@@ -32,7 +39,14 @@ exports.createTask = async (req,res) => {
 exports.getTaskById = async (req,res) => {
   try {
     const task = await Task.findById(req.params.id);
-    res.status(200).json(task);
+    const {_id , name , completed} = task;
+    
+    res.status(200).json({
+      "id" : _id,
+      name,
+      completed
+    });
+
   } catch (error) {
     res.status(500).json({msg: error}); 
   }
